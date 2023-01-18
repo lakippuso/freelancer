@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.content{
+    color: white;
+    margin-left: 10em;
+}
+.main{
+    min-height: 80vh;
+    background-image: linear-gradient(to left, rgba(245, 246, 252, 0.52),rgba(237,164,41, 0.52)),url('../images/bgimage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
