@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserTypeAuth
+class isAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,8 @@ class UserTypeAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->usertype == 'admin') return $next($request);
+        if(Auth::user()->usertype == 'admin') 
+            return $next($request);
 
         return redirect()->route('welcome');
     }

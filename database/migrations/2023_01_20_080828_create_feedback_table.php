@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('usertype')->nullable();
+        Schema::create('feedback', function (Blueprint $table) {
+            $table->id();
+            $table->integer('author_id');
+            $table->integer('freelancer_id');
+            $table->string('title');
+            $table->text('feedback');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('usertype');
-        });
+        Schema::dropIfExists('feedback');
     }
 };

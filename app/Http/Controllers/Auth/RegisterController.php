@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Freelancer;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'fullname' => $data['firstname']." ".$data['lastname'],
@@ -76,5 +77,25 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'usertype' => $data['usertype'],
         ]);
+        
+        if($data['usertype'] == 'freelancer'){
+            Freelancer::create([
+                'user_id' => $user->id,
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+            ]);
+        }
+        return $user;
+
+    }
+    public function redirectPath()
+    {
+        if(auth()->user()->usertype == 'admin'){
+            return route('admin.home');
+        }
+        if(auth()->user()->usertype == 'client'){
+            return route('client.home');
+        }
+        return route('freelancer.home');
     }
 }

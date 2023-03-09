@@ -1,14 +1,18 @@
 *{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-.content{
+
+/* Category Header */
+.content-wrapper .header p{
     color: white;
-    margin-left: 10em;
+    font-size: 2rem;
+    margin-top: 2em;
 }
-.main{
-    min-height: 80vh;
+.main.bg{
     background-image: linear-gradient(to left, rgba(245, 246, 252, 0.52),rgba(237,164,41, 0.52)),url('../images/bgimage.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 10%;
 }

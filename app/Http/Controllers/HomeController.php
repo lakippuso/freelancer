@@ -24,6 +24,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',['users' => User::all()]);
+        return view('admin.home',['users' => User::all()]);
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function clientIndex()
+    {
+        $users = User::where('usertype', 'freelancer')->get();
+        return view('client.home',['users' => $users]);
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function freelancerIndex()
+    {
+        $users = User::where('usertype', 'client')->get();
+        return view('freelancer.home',['users' => $users]);
     }
 }
